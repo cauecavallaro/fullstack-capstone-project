@@ -9,11 +9,12 @@ router.get('/', async (req, res, next) => {
     logger.info('/ called');
     try {
         const db = await connectToDatabase();
+
         const collection = db.collection("gifts");
         const gifts = await collection.find({}).toArray();
         res.json(gifts);
     } catch (e) {
-        logger.console.error('oops something went wrong', e);
+        logger.console.error('oops something went wrong', e)
         next(e);
     }
 });
